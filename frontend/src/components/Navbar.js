@@ -50,7 +50,7 @@ class Navbar extends Component {
 
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand col-sm-12 mb-3" to="/">
+        <Link className="navbar-brand col-sm-10 mb-3" to="/">
           <img src={logo} alt="STO" className="col-sm-4 mb-2" />
         </Link>
         <button
