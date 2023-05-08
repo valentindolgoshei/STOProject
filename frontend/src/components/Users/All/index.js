@@ -11,16 +11,16 @@ class UsersList extends React.Component {
   }
 
   render() {
-    return <List users={this.props.user.allUsers} heading="All users"/>
+    return <List users={this.props.user.allUsers} heading="All users" />;
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
+  user: state.user
 });
 
 const mapDispatchToProps = {
-  getAllUsers,
+  getAllUsers
 };
 
 export default connect(

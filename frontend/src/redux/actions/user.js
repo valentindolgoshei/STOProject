@@ -1,5 +1,10 @@
-import request from 'utils/request';
-import { ERROR, SET_ALL_USERS, SET_CURRENT_USER, SET_VIEWED_USER } from './types';
+import request from '../../utils/request';
+import {
+  ERROR,
+  SET_ALL_USERS,
+  SET_CURRENT_USER,
+  SET_VIEWED_USER
+} from './types';
 import { setToken, unsetToken } from '../../utils/request';
 
 export const login = (history, userData) => {
@@ -25,7 +30,7 @@ export const login = (history, userData) => {
 export const register = (history, userData) => {
   return dispatch => {
     return request('POST', 'api/users/register', userData)
-      .then((response) => {
+      .then(response => {
         const user = response.user;
         const token = response.token;
 
@@ -37,7 +42,8 @@ export const register = (history, userData) => {
         const errorsMessage = err.response.data.message;
         const errorsObject = {};
         errorsMessage.forEach(error => {
-          errorsObject[error.property] = error.constraints[Object.keys(error.constraints)[0]];
+          errorsObject[error.property] =
+            error.constraints[Object.keys(error.constraints)[0]];
         });
 
         dispatch({
@@ -80,7 +86,7 @@ export const getAllUsers = () => {
           payload: err
         });
       });
-  }
+  };
 };
 
 export const getViewedUser = id => {
@@ -96,7 +102,7 @@ export const getViewedUser = id => {
           payload: err
         });
       });
-  }
+  };
 };
 
 export const setCurrentUser = decodedUser => {
@@ -109,15 +115,15 @@ export const setCurrentUser = decodedUser => {
 export const setAllUsers = users => {
   return {
     type: SET_ALL_USERS,
-    payload: users,
-  }
+    payload: users
+  };
 };
 
 export const setViewedUser = user => {
   return {
     type: SET_VIEWED_USER,
-    payload: user,
-  }
+    payload: user
+  };
 };
 
 export const logoutUser = history => dispatch => {

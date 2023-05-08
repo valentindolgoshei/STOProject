@@ -7,9 +7,7 @@ import { withRouter } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 
 class Navbar extends Component {
-
   onLogout = () => this.props.logoutUser(this.props.history);
-
 
   render() {
     let { isAuthenticated, userInfo } = this.props.user;
@@ -26,7 +24,9 @@ class Navbar extends Component {
             @{userInfo.login}
           </div>
         </li>
-        <Link to="/users-list" className="nav-link active">All Users</Link>
+        <Link to="/users-list" className="nav-link active">
+          All Users
+        </Link>
         <Link to="/" className="nav-link active" onClick={this.onLogout}>
           Logout
         </Link>
@@ -50,8 +50,8 @@ class Navbar extends Component {
 
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand col-sm-12 mb-3" to="/" >
-          <img src={logo} alt="STO" className='col-sm-4 mb-2'/>
+        <Link className="navbar-brand col-sm-12 mb-3" to="/">
+          <img src={logo} alt="STO" className="col-sm-4 mb-2" />
         </Link>
         <button
           className="navbar-toggler"
@@ -64,7 +64,9 @@ class Navbar extends Component {
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+        <div
+          className="collapse navbar-collapse d-flex justify-content-end"
+          id="navbarSupportedContent">
           {isAuthenticated ? authLinks : guestLinks}
         </div>
       </nav>

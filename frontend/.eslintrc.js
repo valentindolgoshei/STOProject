@@ -1,6 +1,6 @@
 module.exports = {
-	root: true,
-  parser: "babel-eslint",
+  root: true,
+  parser: '@babel/eslint-parser',
   env: {
     es6: true,
     node: true,
@@ -8,15 +8,15 @@ module.exports = {
   },
   parserOptions: {
     ecmaVersion: 6,
-    sourceType: "module",
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true
-    }
+    },
+    requireConfigFile: false
   },
-  plugins: ["react"],
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended'
   ]
 };

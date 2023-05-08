@@ -1,4 +1,4 @@
-import { START_LOADING, END_LOADING, ERROR } from 'redux/actions/types';
+import { START_LOADING, END_LOADING, ERROR } from '../actions/types';
 
 const reducer = (state = { loadings: 0 }, action) => {
   switch (action.type) {
