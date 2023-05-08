@@ -27,6 +27,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
+PrivateRoute.propTypes = {
+  component: PropTypes.any
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -83,5 +87,7 @@ export default connect(
 App.propTypes = {
   me: PropTypes.func,
   isAuthenticated: PropTypes.bool,
-  user: PropTypes.object
+  user: PropTypes.object,
+  component: PropTypes.any,
+  getAllUsers: PropTypes.any
 };

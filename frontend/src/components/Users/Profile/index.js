@@ -38,5 +38,9 @@ export default connect(
 )(withRouter(Profile));
 
 Profile.propTypes = {
-  getUserFeed: PropTypes.func
+  getUserFeed: PropTypes.func,
+  match: PropTypes.any,
+  me: PropTypes.any,
+  getViewedUser: PropTypes.any,
+  user: PropTypes.any
 };

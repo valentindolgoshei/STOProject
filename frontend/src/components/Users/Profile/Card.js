@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function Card(props) {
   const { user } = props;
@@ -8,3 +9,7 @@ export default function Card(props) {
     </div>
   );
 }
+
+Card.propTypes = {
+  user: PropTypes.any
+};
