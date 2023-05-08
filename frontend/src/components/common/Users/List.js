@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function List(props) {
   const users = props.users;
@@ -10,7 +11,7 @@ export default function List(props) {
       {users
         ? users.map(user => {
             return (
-              <div className="border border-solid font-large">
+              <div key={user.id} className="border border-solid font-large">
                 <Link to={`/users/${user.id}`}>{user.login}</Link>
               </div>
             );
@@ -19,3 +20,10 @@ export default function List(props) {
     </div>
   );
 }
+
+List.propTypes = {
+  getAllUser: PropTypes.func,
+  user: PropTypes.any,
+  users: PropTypes.any,
+  heading: PropTypes.any
+};

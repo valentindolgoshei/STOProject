@@ -29,5 +29,9 @@ export default connect(
 )(withRouter(UsersList));
 
 UsersList.propTypes = {
-  getUserFeed: PropTypes.func
+  getUserFeed: PropTypes.func,
+  user: PropTypes.any,
+  users: PropTypes.any,
+  heading: PropTypes.string,
+  getAllUsers: PropTypes.func
 };
