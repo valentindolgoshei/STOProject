@@ -1,5 +1,5 @@
 import React from 'react';
-import { getViewedUser, me} from '../../../redux/actions/user';
+import { getViewedUser, me } from '../../../redux/actions/user';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -9,10 +9,9 @@ import _ from 'lodash';
 class Profile extends React.Component {
   componentDidMount() {
     const userId = this.props.match.params.id;
-    this.props.me()
-      .then(() => {
-        this.props.getViewedUser(userId);
-      });
+    this.props.me().then(() => {
+      this.props.getViewedUser(userId);
+    });
   }
 
   render() {
@@ -20,7 +19,7 @@ class Profile extends React.Component {
       return null;
     }
 
-    return <Card user={this.props.user.viewedUser}/>;
+    return <Card user={this.props.user.viewedUser} />;
   }
 }
 
@@ -35,9 +34,13 @@ const mapDispatchToProps = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(withRouter(Profile));
 
 Profile.propTypes = {
   getUserFeed: PropTypes.func,
+  match: PropTypes.any,
+  me: PropTypes.any,
+  getViewedUser: PropTypes.any,
+  user: PropTypes.any
 };

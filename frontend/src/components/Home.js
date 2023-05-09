@@ -7,12 +7,10 @@ export default class Home extends Component {
         <h1 className="text-center">
           Welcome to <b>STO</b>!
         </h1>
-        <br/>
-          <br/>
-        <p>
-          Zdravstvujtie!
-        </p>
-        <br/>
+        <br />
+        <br />
+        <p>Zdravstvujtie!</p>
+        <br />
       </div>
     );
   }

@@ -1,5 +1,7 @@
 import {
-  SET_CURRENT_USER, SET_ALL_USERS, SET_VIEWED_USER 
+  SET_CURRENT_USER,
+  SET_ALL_USERS,
+  SET_VIEWED_USER
 } from '../../redux/actions/types';
 import isEmpty from '../../utils/validation/is-empty';
 import Cookies from 'js-cookie';
@@ -27,7 +29,7 @@ export default function(state = initialState, action) {
     case SET_VIEWED_USER:
       return {
         ...state,
-        viewedUser: action.payload,
+        viewedUser: action.payload
       };
     default:
       return state;
