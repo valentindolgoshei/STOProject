@@ -22,4 +22,47 @@ export class User {
     nullable: true,
   })
   password: string;
+
+  @Column()
+  name: string;
+
+  @Column({
+    type: "date"
+  })
+  birthDate: Date;
+
+  @Column({
+    type: "int"
+  })
+  rank: number;
+
+  @Column({
+    type: "nvarchar"
+  })
+  specialization: string;
+
+  @Column({
+    type: "int"
+  })
+  yearsOfExperience: number;
+
+  @Column({
+    type: "number"
+  })
+  salary: number;
+
+  @Column({
+    type: "nvarchar"
+  })
+  education: string;
+
+  @Column({
+    type: "nvarchar"
+  })
+  phoneNumber: string;
+
+  @Column({
+    type: "boolean"
+  })
+  isAdmin: boolean;
 }

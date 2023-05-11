@@ -43,8 +43,7 @@ export class UsersService {
     }
 
     return await this.usersRepository.save({
-      login: userDto.login,
-      email: userDto.email,
+      ...userDto,
       password: generate(userDto.password, {
         algorithm: 'sha256',
       }),
