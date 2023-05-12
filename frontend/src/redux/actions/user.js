@@ -62,11 +62,12 @@ export const updateUser = (history, userData) => {
   return dispatch => {
     return request('PUT', `api/users/${userData.id}`, sentUserData)
       .then(response => {
-        const user = response.user;
+        const user = response.updatedUser;
         const token = response.token;
 
         setToken(token);
         dispatch(setCurrentUser(user));
+        alert('Данные обновлены');
         history.push('/');
       })
       .catch(err => {

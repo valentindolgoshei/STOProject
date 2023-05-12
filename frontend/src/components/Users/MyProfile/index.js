@@ -30,7 +30,7 @@ class MyProfile extends React.Component {
     const value = event.target.value;
     this.setState({
       userInfo: {
-        ...this.state,
+        ...this.state.userInfo,
         [id]: value
       }
     });

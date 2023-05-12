@@ -52,6 +52,11 @@ export class UsersService {
     });
   }
 
+  async updateUser(id: number, userDto: CreateUserDto): Promise<User> {
+    await this.usersRepository.update({ id }, userDto);
+    return this.usersRepository.findOne(id);
+  }
+
   async findUserByLogin(login: string): Promise<User> {
     return this.usersRepository
       .findOneOrFail({

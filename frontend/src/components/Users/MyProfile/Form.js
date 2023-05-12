@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 export default function Form(props) {
   const { user } = props;
@@ -16,7 +17,7 @@ export default function Form(props) {
           id="name"
           placeholder="ФИО"
           title="ФИО"
-          value={user.name}
+          defaultValue={user.name}
           aria-describedby="nameHelp"
           required
         />
@@ -27,8 +28,8 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="birthDate">Дата рождения</label>
         <input
-          value={user.birthDate}
           type="date"
+          defaultValue={moment(user.birthDate).format('YYYY-MM-DD')}
           className="form-control"
           id="birthDate"
           placeholder="Дата рождения"
@@ -43,7 +44,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="rank">Rank</label>
         <input
-          value={user.rank}
+          defaultValue={user.rank}
           type="number"
           className="form-control"
           id="rank"
@@ -59,7 +60,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="specialization">Специализация</label>
         <input
-          value={user.specialization}
+          defaultValue={user.specialization}
           type="text"
           className="form-control"
           id="specialization"
@@ -75,7 +76,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="yearsOfExperience">Стаж, лет</label>
         <input
-          value={user.yearsOfExperience}
+          defaultValue={user.yearsOfExperience}
           type="number"
           className="form-control"
           id="yearsOfExperience"
@@ -91,7 +92,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="salary">Заработная плата</label>
         <input
-          value={user.salary}
+          defaultValue={user.salary}
           type="number"
           className="form-control"
           id="salary"
@@ -108,7 +109,7 @@ export default function Form(props) {
         <label htmlFor="education">Образование</label>
         <input
           type="text"
-          value={user.education}
+          defaultValue={user.education}
           className="form-control"
           id="education"
           placeholder="Образование"
@@ -124,7 +125,7 @@ export default function Form(props) {
         <label htmlFor="phoneNumber">Номер телефона</label>
         <input
           type="text"
-          value={user.phoneNumber}
+          defaultValue={user.phoneNumber}
           className="form-control"
           id="phoneNumber"
           placeholder="Номер телефона"
@@ -140,12 +141,11 @@ export default function Form(props) {
         <label htmlFor="admin">Админ</label>
         <select
           className="form-control"
-          value={user.isAdmin}
+          defaultValue={user.isAdmin}
           id="isAdmin"
-          defaultValue="false"
           required>
-          <option value="true">Да</option>
-          <option value="false">Нет</option>
+          <option defaultValue="true">Да</option>
+          <option defaultValue="false">Нет</option>
         </select>
         {props.errors.isAdmin && (
           <span className="text-danger">{props.errors.isAdmin}</span>
@@ -154,7 +154,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="name">Логин</label>
         <input
-          value={user.login}
+          defaultValue={user.login}
           type="text"
           className="form-control"
           id="login"
@@ -170,7 +170,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="email">E-mail:</label>
         <input
-          value={user.email}
+          defaultValue={user.email}
           type="email"
           className="form-control"
           id="email"

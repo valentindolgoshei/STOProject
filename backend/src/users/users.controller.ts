@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CreateUserDto } from './validation/dto/create.user.dto';
 import { UsersService } from './users.service';
 import { AuthService } from '../auth/auth.service';
@@ -38,5 +38,16 @@ export class UsersController {
         user,
       };
     });
+  }
+
+  @Put("/:userId")
+  async updateUser(@Param() params: UserParams, @Body() updateUserDto: CreateUserDto) {
+    const updatedUser = await this.usersService.updateUser(params.userId, updateUserDto);
+    const payload = {
+      id: updatedUser.id,
+    };
+
+    const token = await this.authService.signPayload(payload);
+    return { updatedUser, token };
   }
 }
