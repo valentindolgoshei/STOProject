@@ -27,7 +27,7 @@ export class User {
   name: string;
 
   @Column({
-    type: "date"
+    type: "timestamp"
   })
   birthDate: Date;
 
@@ -47,7 +47,7 @@ export class User {
   yearsOfExperience: number;
 
   @Column({
-    type: "number"
+    type: "float"
   })
   salary: number;
 
@@ -64,5 +64,5 @@ export class User {
   @Column({
     type: "boolean"
   })
-  isAdmin: boolean;
+  isAdmin: number;
 }

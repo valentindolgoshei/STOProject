@@ -1,4 +1,5 @@
-import { IsBoolean, IsDate, IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsBoolean, IsDate, IsDateString, IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -18,7 +19,7 @@ export class CreateUserDto {
   name: string;
 
   @IsNotEmpty()
-  @IsDate()
+  @IsDateString()
   birthDate: Date;
 
   @IsNotEmpty()
@@ -46,6 +47,6 @@ export class CreateUserDto {
   phoneNumber: string;
 
   @IsNotEmpty()
-  @IsBoolean()
-  isAdmin: boolean;
+  @IsNumber()
+  isAdmin: number;
 }
