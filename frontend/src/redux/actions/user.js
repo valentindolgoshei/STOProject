@@ -28,15 +28,7 @@ export const login = (history, userData) => {
 };
 
 export const register = (history, userData) => {
-  const sentUserData = {
-    ...userData,
-    birthDate: new Date(userData.birthDate),
-    rank: Number(userData.rank),
-    yearsOfExperience: Number(userData.yearsOfExperience),
-    salary: Number(userData.salary),
-    isAdmin: userData.isAdmin ? 1 : 0
-  };
-  console.log(userData);
+  const sentUserData = mapUserDataToSentUserData(userData);
   return dispatch => {
     return request('POST', 'api/users/register', sentUserData)
       .then(response => {
@@ -59,6 +51,36 @@ export const register = (history, userData) => {
           type: ERROR,
           payload: {
             register: errorsObject
+          }
+        });
+      });
+  };
+};
+
+export const updateUser = (history, userData) => {
+  const sentUserData = mapUserDataToSentUserData(userData);
+  return dispatch => {
+    return request('PUT', `api/users/${userData.id}`, sentUserData)
+      .then(response => {
+        const user = response.user;
+        const token = response.token;
+
+        setToken(token);
+        dispatch(setCurrentUser(user));
+        history.push('/');
+      })
+      .catch(err => {
+        const errorsMessage = err.response.data.message;
+        const errorsObject = {};
+        errorsMessage.forEach(error => {
+          errorsObject[error.property] =
+            error.constraints[Object.keys(error.constraints)[0]];
+        });
+
+        dispatch({
+          type: ERROR,
+          payload: {
+            updateUser: errorsObject
           }
         });
       });
@@ -140,3 +162,14 @@ export const logoutUser = history => dispatch => {
   dispatch(setCurrentUser({}));
   history.push('/');
 };
+
+function mapUserDataToSentUserData(userData) {
+  return {
+    ...userData,
+    birthDate: new Date(userData.birthDate),
+    rank: Number(userData.rank),
+    yearsOfExperience: Number(userData.yearsOfExperience),
+    salary: Number(userData.salary),
+    isAdmin: userData.isAdmin ? 1 : 0
+  };
+}

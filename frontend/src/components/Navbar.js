@@ -10,30 +10,27 @@ class Navbar extends Component {
   onLogout = () => this.props.logoutUser(this.props.history);
 
   render() {
-    let { isAuthenticated, isAdmin, userInfo } = this.props.user;
-    console.log('user ', this.props.user);
+    let { isAuthenticated, isAdmin } = this.props.user;
 
     let adminLinks = (
       <Link to="/users-list" className="nav-link active">
-        All Users
+        Сотрудники
       </Link>
     );
     let authLinks = (
       <ul className="navbar-nav ml-lg-4">
         <li className="nav-item dropdown cursor-pointer">
-          <div
-            className="nav-link dropdown-toggle active"
+          <Link
+            className="nav-link active"
             id="navbarDropdown"
             role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false">
-            {userInfo.login}
-          </div>
+            to="/my-profile">
+            Мой профиль
+          </Link>
         </li>
         {isAdmin ? adminLinks : ''}
         <Link to="/" className="nav-link active" onClick={this.onLogout}>
-          Logout
+          Выйти
         </Link>
       </ul>
     );
@@ -42,12 +39,12 @@ class Navbar extends Component {
       <ul className="navbar-nav mr-lg-4">
         <li className="nav-item">
           <Link className="nav-link active" to="/register">
-            Register
+            Регистрация
           </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link active" to="/login">
-            Log In
+            Вход
           </Link>
         </li>
       </ul>
