@@ -1,13 +1,10 @@
 import {
   Controller,
-  Get,
   UseGuards,
-  Res,
   Req,
-  UnauthorizedException,
   Post,
   Body,
-  Headers,
+  BadRequestException,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthorizeUserDto } from '../users/validation/dto/authorize.user.dto';
@@ -15,6 +12,7 @@ import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
 import { Request } from 'express';
 import { JwtService } from '@nestjs/jwt';
+import { generate, verify } from 'password-hash';
 
 @Controller('api/auth')
 export class AuthController {
@@ -28,6 +26,10 @@ export class AuthController {
     const user = await this.usersService.findUserByLogin(
       authorizeUserDto.login,
     );
+    const verificationResult = verify(authorizeUserDto.password, user.password);
+    if (!verificationResult) {
+      throw new BadRequestException();
+    }
     const payload = {
       id: user.id,
     };

@@ -18,7 +18,7 @@ class Navbar extends Component {
       </Link>
     );
     let authLinks = (
-      <ul className="navbar-nav ml-lg-4">
+      <ul className="navbar-nav">
         <li className="nav-item dropdown cursor-pointer">
           <Link
             className="nav-link active"
@@ -52,19 +52,9 @@ class Navbar extends Component {
 
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand col-sm-10 mb-3" to="/">
+        <Link className="navbar-brand col-sm-8 mb-3" to="/">
           <img src={logo} alt="STO" className="col-sm-4 mb-2" />
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
 
         <div
           className="collapse navbar-collapse d-flex justify-content-end"
