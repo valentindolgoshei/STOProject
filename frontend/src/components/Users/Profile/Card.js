@@ -5,9 +5,9 @@ import moment from 'moment';
 export default function Card(props) {
   const { user } = props;
   return (
-    <div className="offset-3 col-6">
+    <div className="offset-3 col-6 mt-1 mb-2">
       <div className="card">
-        <div className="card-header">Данные сотрудника {user.login}</div>
+        <div className="card-header">Данные сотрудника {user.name}</div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">ФИО: {user.name}</li>
           <li className="list-group-item">
