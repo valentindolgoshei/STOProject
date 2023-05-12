@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.user;
+    const { isAuthenticated, isAdmin } = this.props.user;
 
     return (
       <Provider store={store}>
@@ -50,7 +50,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <PrivateRoute
-              isPermissions={isAuthenticated}
+              isPermissions={isAuthenticated && isAdmin}
               exact
               path="/users-list"
               component={UsersList}

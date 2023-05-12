@@ -28,8 +28,17 @@ export const login = (history, userData) => {
 };
 
 export const register = (history, userData) => {
+  const sentUserData = {
+    ...userData,
+    birthDate: new Date(userData.birthDate),
+    rank: Number(userData.rank),
+    yearsOfExperience: Number(userData.yearsOfExperience),
+    salary: Number(userData.salary),
+    isAdmin: userData.isAdmin ? 1 : 0
+  };
+  console.log(userData);
   return dispatch => {
-    return request('POST', 'api/users/register', userData)
+    return request('POST', 'api/users/register', sentUserData)
       .then(response => {
         const user = response.user;
         const token = response.token;

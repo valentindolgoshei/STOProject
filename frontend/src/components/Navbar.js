@@ -10,7 +10,14 @@ class Navbar extends Component {
   onLogout = () => this.props.logoutUser(this.props.history);
 
   render() {
-    let { isAuthenticated, userInfo } = this.props.user;
+    let { isAuthenticated, isAdmin, userInfo } = this.props.user;
+    console.log('user ', this.props.user);
+
+    let adminLinks = (
+      <Link to="/users-list" className="nav-link active">
+        All Users
+      </Link>
+    );
     let authLinks = (
       <ul className="navbar-nav ml-lg-5">
         <li className="nav-item dropdown cursor-pointer">
@@ -21,12 +28,10 @@ class Navbar extends Component {
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false">
-            @{userInfo.login}
+            {userInfo.login}
           </div>
         </li>
-        <Link to="/users-list" className="nav-link active">
-          All Users
-        </Link>
+        {isAdmin ? adminLinks : ''}
         <Link to="/" className="nav-link active" onClick={this.onLogout}>
           Logout
         </Link>
@@ -75,8 +80,7 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  cart: state.cart
+  user: state.user
 });
 
 const mapDispatchToProps = {

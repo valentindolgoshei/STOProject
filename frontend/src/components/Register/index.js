@@ -13,7 +13,16 @@ class Register extends React.Component {
       userData: {
         login: '',
         email: '',
-        password: ''
+        password: '',
+        name: '',
+        birthDate: undefined,
+        rank: undefined,
+        specialization: '',
+        yearsOfExperience: undefined,
+        salary: undefined,
+        education: '',
+        phoneNumber: '',
+        isAdmin: false
       }
     };
     this.handleSubmit = this.handleSubmit.bind(this);

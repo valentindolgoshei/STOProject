@@ -8,6 +8,7 @@ import Cookies from 'js-cookie';
 
 const initialState = {
   isAuthenticated: Cookies.get('accessToken') != null,
+  isAdmin: false,
   userInfo: [],
   allUsers: [],
   viewedUser: {}
@@ -19,6 +20,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload),
+        isAdmin: action.payload.isAdmin,
         userInfo: action.payload
       };
     case SET_ALL_USERS:
