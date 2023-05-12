@@ -144,8 +144,8 @@ export default function Form(props) {
           defaultValue={user.isAdmin}
           id="isAdmin"
           required>
-          <option defaultValue="true">Да</option>
-          <option defaultValue="false">Нет</option>
+          <option value="true">Да</option>
+          <option value="false">Нет</option>
         </select>
         {props.errors.isAdmin && (
           <span className="text-danger">{props.errors.isAdmin}</span>

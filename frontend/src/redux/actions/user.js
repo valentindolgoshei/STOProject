@@ -171,6 +171,6 @@ function mapUserDataToSentUserData(userData) {
     rank: Number(userData.rank),
     yearsOfExperience: Number(userData.yearsOfExperience),
     salary: Number(userData.salary),
-    isAdmin: userData.isAdmin ? 1 : 0
+    isAdmin: userData.isAdmin === 'true' || userData.isAdmin === true ? 1 : 0
   };
 }

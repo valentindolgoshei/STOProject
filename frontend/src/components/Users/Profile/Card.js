@@ -29,9 +29,6 @@ export default function Card(props) {
           </li>
         </ul>
       </div>
-      <button type="button" className="btn btn-dark offset-4 col-4">
-        Редактировать профиль
-      </button>
     </div>
   );
 }
