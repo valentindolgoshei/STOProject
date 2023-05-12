@@ -12,7 +12,12 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(), UsersModule, AuthModule],
-  controllers: [AppController, HealthcheckController, AuthController, UsersController],
+  controllers: [
+    AppController,
+    HealthcheckController,
+    AuthController,
+    UsersController,
+  ],
   providers: [AppService, AuthService, UsersService],
 })
 export class AppModule {}

@@ -2,14 +2,10 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
-
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'nvarchar',
-  charset: 'cp1251',
-  nullable: true,
-  })
+  @Column({ type: 'nvarchar', charset: 'cp1251', nullable: true })
   login: string;
 
   @Column({
@@ -27,42 +23,42 @@ export class User {
   name: string;
 
   @Column({
-    type: "timestamp"
+    type: 'timestamp',
   })
   birthDate: Date;
 
   @Column({
-    type: "int"
+    type: 'int',
   })
   rank: number;
 
   @Column({
-    type: "nvarchar"
+    type: 'nvarchar',
   })
   specialization: string;
 
   @Column({
-    type: "int"
+    type: 'int',
   })
   yearsOfExperience: number;
 
   @Column({
-    type: "float"
+    type: 'float',
   })
   salary: number;
 
   @Column({
-    type: "nvarchar"
+    type: 'nvarchar',
   })
   education: string;
 
   @Column({
-    type: "nvarchar"
+    type: 'nvarchar',
   })
   phoneNumber: string;
 
   @Column({
-    type: "boolean"
+    type: 'boolean',
   })
   isAdmin: number;
 }

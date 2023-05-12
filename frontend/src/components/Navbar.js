@@ -19,7 +19,7 @@ class Navbar extends Component {
       </Link>
     );
     let authLinks = (
-      <ul className="navbar-nav ml-lg-5">
+      <ul className="navbar-nav ml-lg-4">
         <li className="nav-item dropdown cursor-pointer">
           <div
             className="nav-link dropdown-toggle active"

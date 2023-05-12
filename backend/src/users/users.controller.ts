@@ -6,12 +6,10 @@ import { UserParams } from './validation/params/user.params';
 
 @Controller('/api/users')
 export class UsersController {
-
-  constructor(private readonly usersService: UsersService,
-              private readonly authService: AuthService,
-  ) {
-
-  }
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Post('/register')
   async register(@Body() createUserDto: CreateUserDto) {
@@ -26,21 +24,19 @@ export class UsersController {
 
   @Get('/all')
   async getAllUsers() {
-    return await this.usersService.getAllUsers()
-      .then(users => {
-        return {
-          users,
-        };
-      });
+    return await this.usersService.getAllUsers().then(users => {
+      return {
+        users,
+      };
+    });
   }
 
   @Get('/:userId')
   async getUserById(@Param() params: UserParams) {
-    return await this.usersService.getUserById(params.userId)
-      .then(user => {
-        return {
-          user,
-        };
-      });
+    return await this.usersService.getUserById(params.userId).then(user => {
+      return {
+        user,
+      };
+    });
   }
 }

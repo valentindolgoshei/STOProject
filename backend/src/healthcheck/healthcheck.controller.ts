@@ -3,7 +3,6 @@ import { AuthGuard } from '@nestjs/passport';
 
 @Controller('/api/healthcheck')
 export class HealthcheckController {
-
   @Get()
   @UseGuards(AuthGuard('jwt'))
   healthCheck(): object {
