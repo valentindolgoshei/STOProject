@@ -20,6 +20,7 @@ import './index.css';
 import MyProfile from './components/Users/MyProfile';
 import OrdersList from './components/Orders/List';
 import CreateOrder from './components/Orders/New';
+import UpdateOrder from './components/Orders/Update';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -81,6 +82,12 @@ class App extends Component {
               exact
               path="/orders/new-order"
               component={CreateOrder}
+            />
+            <PrivateRoute
+              isPermissions={isAuthenticated}
+              exact
+              path="/orders/update-order/:orderId"
+              component={UpdateOrder}
             />
           </Layout>
         </Router>

@@ -5,7 +5,8 @@ const initialState = {
   login: {},
   update: {},
   updateUser: {},
-  createOrder: {}
+  createOrder: {},
+  updateOrder: {}
 };
 
 export default function(state = initialState, action) {

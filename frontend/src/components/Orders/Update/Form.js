@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 export default function Form(props) {
-  const { users } = props;
+  const { users, order } = props;
   return (
     <form
       className="mt-5 mb-5 offset-sm-2 offset-md-3 offset-lg-4 col-sm-8 col-md-6 col-lg-4 border"
@@ -11,6 +12,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="auto">Автомобиль</label>
         <input
+          defaultValue={order.auto}
           type="text"
           className="form-control"
           id="auto"
@@ -26,6 +28,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="model">Модель</label>
         <input
+          defaultValue={order.model}
           type="text"
           className="form-control"
           id="model"
@@ -41,6 +44,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="defect">Неисправность</label>
         <input
+          defaultValue={order.defect}
           type="text"
           className="form-control"
           id="defect"
@@ -56,16 +60,17 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="status">Статус заказа</label>
         <select
-          defaultValue="Принят"
+          defaultValue={order.status}
+          type="text"
           className="form-control"
           id="status"
           placeholder="Статус заказа"
           title="Статус заказа"
           aria-describedby="nameHelp"
           required>
-          <option value="Принят">Принят</option>
-          <option value="Выполняется">Выполняется</option>
-          <option value="Выполнен">Выполнен</option>
+          <option>Принят</option>
+          <option>Выполняется</option>
+          <option>Выполнен</option>
         </select>
         {props.errors.status && (
           <span className="text-danger">{props.errors.status}</span>
@@ -74,6 +79,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="receivedOn">Дата поступления</label>
         <input
+          defaultValue={moment(order.receivedOn).format('YYYY-MM-DD')}
           type="date"
           className="form-control"
           id="receivedOn"
@@ -89,6 +95,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="expectedCompletionOn">Ожидаемая дата выполнения</label>
         <input
+          defaultValue={moment(order.expectedCompletionOn).format('YYYY-MM-DD')}
           type="date"
           className="form-control"
           id="expectedCompletionOn"
@@ -106,6 +113,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="expectedCost">Ожидаемая стоимость заказа, BYN</label>
         <input
+          defaultValue={order.expectedCost}
           type="number"
           className="form-control"
           id="expectedCost"
@@ -120,7 +128,10 @@ export default function Form(props) {
       </div>
       <div className="form-group">
         <label htmlFor="userId">Сотрудник</label>
-        <select className="form-control" id="userId">
+        <select
+          className="form-control"
+          id="userId"
+          defaultValue={order.userId}>
           {' '}
           {users.map(user => {
             return (
@@ -137,6 +148,7 @@ export default function Form(props) {
       <div className="form-group">
         <label htmlFor="customer">Заказчик</label>
         <input
+          defaultValue={order.customer}
           type="text"
           className="form-control"
           id="customer"
@@ -153,13 +165,14 @@ export default function Form(props) {
         type="button"
         className="btn btn-outline-primary col-sm-12 mb-3"
         onClick={props.handleSubmit}>
-        Создать заказ
+        Обновить заказ
       </button>
     </form>
   );
 }
 
 Form.propTypes = {
+  order: PropTypes.object,
   handleSubmit: PropTypes.func,
   handleChange: PropTypes.func,
   errors: PropTypes.object,

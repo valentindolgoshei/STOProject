@@ -1,7 +1,8 @@
-import { SET_ORDERS } from '../actions/types';
+import { SET_ORDER, SET_ORDERS } from '../actions/types';
 
 const initialState = {
-  ordersList: []
+  ordersList: [],
+  currentOrder: {}
 };
 
 export default function(state = initialState, action) {
@@ -10,6 +11,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         ordersList: action.payload
+      };
+    case SET_ORDER:
+      return {
+        ...state,
+        currentOrder: action.payload
       };
     default:
       return state;

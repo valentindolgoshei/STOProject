@@ -1,4 +1,4 @@
-import { ERROR, SET_ORDERS } from './types';
+import { ERROR, SET_ORDER, SET_ORDERS } from './types';
 import request from '../../utils/request';
 
 export const getOrders = () => {
@@ -42,10 +42,59 @@ export const createOrder = (history, orderData) => {
   };
 };
 
+export const updateOrder = (history, orderData) => {
+  const sentOrderData = mapOrderDataToSentOrderData(orderData);
+  return dispatch => {
+    return request(
+      'PUT',
+      `api/orders/${orderData.userId}/${orderData.id}`,
+      sentOrderData
+    )
+      .then(() => {
+        alert('Заказ обновлен');
+        history.push('/orders');
+      })
+      .catch(err => {
+        const errorsMessage = err.response.data.message;
+        const errorsObject = {};
+        errorsMessage.forEach(error => {
+          errorsObject[error.property] =
+            error.constraints[Object.keys(error.constraints)[0]];
+        });
+        dispatch({
+          type: ERROR,
+          payload: {
+            updateOrder: errorsObject
+          }
+        });
+      });
+  };
+};
+
+export const getOrder = orderId => {
+  return dispatch => {
+    return request('GET', `api/orders/${orderId}`)
+      .then(response => {
+        const order = response;
+        dispatch(setOrder(order));
+      })
+      .catch(err => {
+        console.error('Error getting order ', err);
+      });
+  };
+};
+
 export const setOrders = orders => {
   return {
     type: SET_ORDERS,
     payload: orders
+  };
+};
+
+export const setOrder = order => {
+  return {
+    type: SET_ORDER,
+    payload: order
   };
 };
 

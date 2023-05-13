@@ -1,27 +1,18 @@
 import React from 'react';
 import { unsetErrors } from '../../../redux/actions/error';
-import { createOrder } from '../../../redux/actions/order';
+import { updateOrder, getOrder } from '../../../redux/actions/order';
 import { getAllUsers, me } from '../../../redux/actions/user';
 import { withRouter } from 'react-router';
 import Form from './Form';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as _ from 'lodash';
 
-class CreateOrder extends React.Component {
+class UpdateOrder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      orderData: {
-        auto: '',
-        model: '',
-        defect: '',
-        status: 'Принят',
-        receivedOn: undefined,
-        expectedCompletionOn: undefined,
-        expectedCost: undefined,
-        userId: undefined,
-        customer: undefined
-      }
+      orderData: {}
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -29,19 +20,18 @@ class CreateOrder extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllUsers().then(() => {
+    this.props.getOrder(this.props.match.params.orderId).then(() => {
       this.setState({
-        orderData: {
-          ...this.state.orderData,
-          userId: `${this.props.user.allUsers[0].id}`
-        }
+        ...this.state,
+        orderData: this.props.order.currentOrder
       });
     });
+    this.props.getAllUsers();
   }
 
   handleSubmit() {
     this.props.unsetErrors();
-    this.props.createOrder(this.props.history, this.state.orderData);
+    this.props.updateOrder(this.props.history, this.state.orderData);
   }
 
   handleChange(event) {
@@ -56,12 +46,17 @@ class CreateOrder extends React.Component {
   }
 
   render() {
+    if (_.isEmpty(this.state.orderData)) {
+      return null;
+    }
+
     return (
       <Form
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
-        errors={this.props.errors.createOrder}
+        errors={this.props.errors.updateOrder}
         users={this.props.user.allUsers}
+        order={this.props.order.currentOrder}
       />
     );
   }
@@ -69,11 +64,13 @@ class CreateOrder extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  errors: state.errors
+  errors: state.errors,
+  order: state.order
 });
 
 const mapDispatchToProps = {
-  createOrder,
+  getOrder,
+  updateOrder,
   unsetErrors,
   getAllUsers,
   me
@@ -82,12 +79,15 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(CreateOrder));
+)(withRouter(UpdateOrder));
 
-CreateOrder.propTypes = {
+UpdateOrder.propTypes = {
   unsetErrors: PropTypes.func,
-  createOrder: PropTypes.func,
+  updateOrder: PropTypes.func,
   getAllUsers: PropTypes.func,
+  getOrder: PropTypes.func,
+  match: PropTypes.object,
+  order: PropTypes.object,
   history: PropTypes.object,
   errors: PropTypes.object,
   user: PropTypes.object,

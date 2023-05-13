@@ -8,6 +8,7 @@ import { UsersService } from 'src/users/users.service';
 import { GetOrderParams } from './validation/params/get.order.params';
 import { UpdateOrderParams } from './validation/params/update.order.params';
 import { DeleteOrderParams } from './validation/params/delete.order.params';
+import * as _ from 'lodash';
 
 export class OrdersService {
   constructor(
@@ -28,7 +29,9 @@ export class OrdersService {
   }
 
   async getOrder(orderParams: GetOrderParams): Promise<Order> {
-    return this.ordersRepository.findOne(orderParams.orderId);
+    return this.ordersRepository.findOne(orderParams.orderId, {
+      relations: ['user'],
+    });
   }
 
   async getOrders(): Promise<Order[]> {
@@ -40,7 +43,11 @@ export class OrdersService {
     orderDto: CreateOrderDto,
   ): Promise<Order> {
     const user = await this.usersServise.findUserById(orderParams.userId);
-    await this.ordersRepository.update({ id: orderParams.orderId }, orderDto);
+    const order = _.omit(orderDto, 'userId');
+    await this.ordersRepository.update(
+      { id: orderParams.orderId },
+      { ...order, user },
+    );
     return this.ordersRepository.findOne({ id: orderParams.orderId });
   }
 

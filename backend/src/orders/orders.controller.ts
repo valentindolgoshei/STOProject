@@ -32,7 +32,12 @@ export class OrdersController {
 
   @Get('/:orderId')
   async getOrder(@Param() params: GetOrderParams) {
-    return this.ordersService.getOrder(params);
+    const order = await this.ordersService.getOrder(params);
+    const user = order.user;
+    return {
+      ...order,
+      userId: user.id,
+    };
   }
 
   @Get('/')
@@ -43,7 +48,7 @@ export class OrdersController {
   @Put('/:userId/:orderId')
   async updateOrder(
     @Param() params: UpdateOrderParams,
-    updateOrderDto: CreateOrderDto,
+    @Body() updateOrderDto: CreateOrderDto,
   ) {
     return this.ordersService.updateOrder(params, updateOrderDto);
   }

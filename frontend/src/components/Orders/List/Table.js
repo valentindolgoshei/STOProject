@@ -36,9 +36,11 @@ export default function OrdersTable(props) {
                 <td>{order.expectedCost} BYN</td>
                 <td>{order.status}</td>
                 <td>
-                  <button className="btn btn-outline-info col-sm-12 mb-3">
-                    Просмотреть/изменить
-                  </button>
+                  <Link to={`/orders/update-order/${order.id}`}>
+                    <button className="btn btn-outline-info col-sm-12 mb-3">
+                      Просмотреть/изменить
+                    </button>
+                  </Link>
                   <button className="btn btn-outline-danger col-sm-12 mb-3">
                     Удалить
                   </button>
