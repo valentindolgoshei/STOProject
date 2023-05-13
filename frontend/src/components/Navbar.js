@@ -28,6 +28,15 @@ class Navbar extends Component {
             Мой профиль
           </Link>
         </li>
+        <li className="nav-item">
+          <Link
+            className="nav-link active"
+            id="ordersButton"
+            role="button"
+            to="/orders">
+            Заказы
+          </Link>
+        </li>
         {isAdmin ? adminLinks : ''}
         <Link to="/" className="nav-link active" onClick={this.onLogout}>
           Выйти

@@ -18,6 +18,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min';
 import './index.css';
 import MyProfile from './components/Users/MyProfile';
+import Orders from './components/Orders';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -67,6 +68,12 @@ class App extends Component {
               exact
               path="/my-profile"
               component={MyProfile}
+            />
+            <PrivateRoute
+              isPermissions={isAuthenticated}
+              exact
+              path="/orders"
+              component={Orders}
             />
           </Layout>
         </Router>
