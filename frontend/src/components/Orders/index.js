@@ -15,10 +15,9 @@ class OrdersList extends React.Component {
 
   componentDidMount() {
     this.props.getOrders().then(() => {
-      console.log('after request');
       this.setState({
         ...this.state,
-        orders: this.props.orders.ordersList
+        orders: this.props.order.ordersList
       });
     });
   }
@@ -32,7 +31,7 @@ class OrdersList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  orders: state.orders
+  order: state.order
 });
 
 const mapDispatchToProps = {
@@ -45,6 +44,6 @@ export default connect(
 )(withRouter(OrdersList));
 
 OrdersList.propTypes = {
-  orders: PropTypes.any,
+  order: PropTypes.any,
   getOrders: PropTypes.func
 };
