@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import { formatDate } from '../../common/formatDate';
 
 export default function Card(props) {
   const { user } = props;
@@ -36,8 +36,3 @@ export default function Card(props) {
 Card.propTypes = {
   user: PropTypes.any
 };
-
-function formatDate(dateString) {
-  const date = new Date(dateString);
-  return moment(date).format('DD-MM-YYYY');
-}
