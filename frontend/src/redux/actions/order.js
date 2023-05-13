@@ -84,6 +84,18 @@ export const getOrder = orderId => {
   };
 };
 
+export const deleteOrder = orderId => {
+  return () => {
+    return request('DELETE', `api/orders/${orderId}`)
+      .then(() => {
+        alert('Заказ удален!');
+      })
+      .catch(() => {
+        alert('Не удалось удалить заказ');
+      });
+  };
+};
+
 export const setOrders = orders => {
   return {
     type: SET_ORDERS,

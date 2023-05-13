@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import OrdersTable from './Table';
 import PropTypes from 'prop-types';
-import { getOrders } from '../../../redux/actions/order';
+import { getOrders, deleteOrder } from '../../../redux/actions/order';
 import { connect } from 'react-redux';
 
 class OrdersList extends React.Component {
@@ -11,9 +11,14 @@ class OrdersList extends React.Component {
     this.state = {
       orders: []
     };
+    this.handleDeleteOrder = this.handleDeleteOrder.bind(this);
   }
 
   componentDidMount() {
+    this.refreshOrders();
+  }
+
+  refreshOrders() {
     this.props.getOrders().then(() => {
       this.setState({
         ...this.state,
@@ -26,7 +31,16 @@ class OrdersList extends React.Component {
     if (!this.state.orders) {
       return null;
     }
-    return <OrdersTable orders={this.state.orders} />;
+    return (
+      <OrdersTable
+        orders={this.state.orders}
+        handleDeleteOrder={this.handleDeleteOrder}
+      />
+    );
+  }
+
+  handleDeleteOrder(orderId) {
+    this.props.deleteOrder(orderId).then(() => this.refreshOrders());
   }
 }
 
@@ -35,7 +49,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getOrders
+  getOrders,
+  deleteOrder
 };
 
 export default connect(
@@ -45,5 +60,6 @@ export default connect(
 
 OrdersList.propTypes = {
   order: PropTypes.any,
-  getOrders: PropTypes.func
+  getOrders: PropTypes.func,
+  deleteOrder: PropTypes.func
 };

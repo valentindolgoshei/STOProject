@@ -41,7 +41,9 @@ export default function OrdersTable(props) {
                       Просмотреть/изменить
                     </button>
                   </Link>
-                  <button className="btn btn-outline-danger col-sm-12 mb-3">
+                  <button
+                    className="btn btn-outline-danger col-sm-12 mb-3"
+                    onClick={() => props.handleDeleteOrder(order.id)}>
                     Удалить
                   </button>
                 </td>
@@ -56,5 +58,6 @@ export default function OrdersTable(props) {
 }
 
 OrdersTable.propTypes = {
-  orders: PropTypes.any
+  orders: PropTypes.any,
+  handleDeleteOrder: PropTypes.func
 };
