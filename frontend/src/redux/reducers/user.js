@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 const initialState = {
   isAuthenticated: Cookies.get('accessToken') != null,
   isAdmin: false,
-  userInfo: [],
+  userInfo: {},
   allUsers: [],
   viewedUser: {}
 };

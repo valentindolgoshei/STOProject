@@ -12,6 +12,9 @@ export class Order {
   @Column()
   model: string;
 
+  @Column()
+  defect: string;
+
   @Column({
     type: 'timestamp',
   })

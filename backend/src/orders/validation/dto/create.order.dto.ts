@@ -16,6 +16,10 @@ export class CreateOrderDto {
   model: string;
 
   @IsNotEmpty()
+  @IsString()
+  defect: string;
+
+  @IsNotEmpty()
   @IsDateString()
   receivedOn: Date;
 
@@ -32,6 +36,6 @@ export class CreateOrderDto {
   userId: number;
 
   @IsNotEmpty()
-  @IsNumberString()
+  @IsString()
   customer: string;
 }

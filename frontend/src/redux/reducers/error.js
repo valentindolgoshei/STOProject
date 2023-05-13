@@ -4,7 +4,8 @@ const initialState = {
   register: {},
   login: {},
   update: {},
-  updateUser: {}
+  updateUser: {},
+  createOrder: {}
 };
 
 export default function(state = initialState, action) {

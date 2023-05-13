@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import OrdersTable from './Table';
 import PropTypes from 'prop-types';
-import { getOrders } from '../../redux/actions/order';
+import { getOrders } from '../../../redux/actions/order';
 import { connect } from 'react-redux';
 
 class OrdersList extends React.Component {
