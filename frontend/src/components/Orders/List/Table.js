@@ -22,6 +22,7 @@ export default function OrdersTable(props) {
           <th>Неисправность</th>
           <th>Дата поступления</th>
           <th>Ожидаемая стоимость</th>
+          <th>Статус заказа</th>
           <th>Действия с заказом</th>
         </tr>
         <tbody className="border-dark">
@@ -33,6 +34,7 @@ export default function OrdersTable(props) {
                 <td>{order.defect}</td>
                 <td>{formatDate(order.receivedOn)}</td>
                 <td>{order.expectedCost} BYN</td>
+                <td>{order.status}</td>
                 <td>
                   <button className="btn btn-outline-info col-sm-12 mb-3">
                     Просмотреть/изменить

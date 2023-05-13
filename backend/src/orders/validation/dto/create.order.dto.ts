@@ -20,6 +20,10 @@ export class CreateOrderDto {
   defect: string;
 
   @IsNotEmpty()
+  @IsString()
+  status: string;
+
+  @IsNotEmpty()
   @IsDateString()
   receivedOn: Date;
 

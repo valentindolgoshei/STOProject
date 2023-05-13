@@ -15,6 +15,9 @@ export class Order {
   @Column()
   defect: string;
 
+  @Column()
+  status: string;
+
   @Column({
     type: 'timestamp',
   })

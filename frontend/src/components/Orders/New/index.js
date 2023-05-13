@@ -15,6 +15,7 @@ class CreateOrder extends React.Component {
         auto: '',
         model: '',
         defect: '',
+        status: '',
         receivedOn: undefined,
         expectedCompletionOn: undefined,
         expectedCost: undefined,

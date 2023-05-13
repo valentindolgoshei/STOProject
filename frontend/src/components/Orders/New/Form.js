@@ -54,6 +54,24 @@ export default function Form(props) {
         )}
       </div>
       <div className="form-group">
+        <label htmlFor="status">Статус заказа</label>
+        <select
+          type="text"
+          className="form-control"
+          id="status"
+          placeholder="Статус заказа"
+          title="Статус заказа"
+          aria-describedby="nameHelp"
+          required>
+          <option>Принят</option>
+          <option>Выполняется</option>
+          <option>Выполнен</option>
+        </select>
+        {props.errors.status && (
+          <span className="text-danger">{props.errors.status}</span>
+        )}
+      </div>
+      <div className="form-group">
         <label htmlFor="receivedOn">Дата поступления</label>
         <input
           type="date"
