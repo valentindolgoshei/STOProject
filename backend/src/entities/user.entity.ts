@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Order } from './order.entity';
 
 @Entity()
 export class User {
@@ -61,4 +62,7 @@ export class User {
     type: 'boolean',
   })
   isAdmin: number;
+
+  @OneToMany(() => Order, order => order.user)
+  orders: Order[];
 }
