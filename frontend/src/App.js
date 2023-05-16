@@ -17,6 +17,10 @@ import Layout from './components/Layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min';
 import './index.css';
+import MyProfile from './components/Users/MyProfile';
+import OrdersList from './components/Orders/List';
+import CreateOrder from './components/Orders/New';
+import UpdateOrder from './components/Orders/Update';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -40,7 +44,7 @@ class App extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.user;
+    const { isAuthenticated, isAdmin } = this.props.user;
 
     return (
       <Provider store={store}>
@@ -50,7 +54,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <PrivateRoute
-              isPermissions={isAuthenticated}
+              isPermissions={isAuthenticated && isAdmin}
               exact
               path="/users-list"
               component={UsersList}
@@ -60,6 +64,30 @@ class App extends Component {
               exact
               path="/users/:id"
               component={Profile}
+            />
+            <PrivateRoute
+              isPermissions={isAuthenticated}
+              exact
+              path="/my-profile"
+              component={MyProfile}
+            />
+            <PrivateRoute
+              isPermissions={isAuthenticated}
+              exact
+              path="/orders"
+              component={OrdersList}
+            />
+            <PrivateRoute
+              isPermissions={isAuthenticated}
+              exact
+              path="/orders/new-order"
+              component={CreateOrder}
+            />
+            <PrivateRoute
+              isPermissions={isAuthenticated}
+              exact
+              path="/orders/update-order/:orderId"
+              component={UpdateOrder}
             />
           </Layout>
         </Router>

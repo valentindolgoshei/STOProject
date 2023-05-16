@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CreateUserDto } from './validation/dto/create.user.dto';
 import { UsersService } from './users.service';
 import { AuthService } from '../auth/auth.service';
@@ -6,12 +6,10 @@ import { UserParams } from './validation/params/user.params';
 
 @Controller('/api/users')
 export class UsersController {
-
-  constructor(private readonly usersService: UsersService,
-              private readonly authService: AuthService,
-  ) {
-
-  }
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Post('/register')
   async register(@Body() createUserDto: CreateUserDto) {
@@ -26,21 +24,30 @@ export class UsersController {
 
   @Get('/all')
   async getAllUsers() {
-    return await this.usersService.getAllUsers()
-      .then(users => {
-        return {
-          users,
-        };
-      });
+    return await this.usersService.getAllUsers().then(users => {
+      return {
+        users,
+      };
+    });
   }
 
   @Get('/:userId')
   async getUserById(@Param() params: UserParams) {
-    return await this.usersService.getUserById(params.userId)
-      .then(user => {
-        return {
-          user,
-        };
-      });
+    return await this.usersService.getUserById(params.userId).then(user => {
+      return {
+        user,
+      };
+    });
+  }
+
+  @Put("/:userId")
+  async updateUser(@Param() params: UserParams, @Body() updateUserDto: CreateUserDto) {
+    const updatedUser = await this.usersService.updateUser(params.userId, updateUserDto);
+    const payload = {
+      id: updatedUser.id,
+    };
+
+    const token = await this.authService.signPayload(payload);
+    return { updatedUser, token };
   }
 }

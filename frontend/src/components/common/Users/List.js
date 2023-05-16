@@ -6,17 +6,19 @@ export default function List(props) {
   const users = props.users;
   const heading = props.heading;
   return (
-    <div className="offset-4 col-4">
+    <div className="card offset-4 col-4 mt-1">
       <h1 className="text-center">{heading}</h1>
-      {users
-        ? users.map(user => {
-            return (
-              <div key={user.id} className="border border-solid font-large">
-                <Link to={`/users/${user.id}`}>{user.login}</Link>
-              </div>
-            );
-          })
-        : ''}
+      <ul className="list-group list-group-flush">
+        {users
+          ? users.map(user => {
+              return (
+                <li key={user.id} className="list-group-item">
+                  <Link to={`/users/${user.id}`}>{user.name}</Link>
+                </li>
+              );
+            })
+          : ''}
+      </ul>
     </div>
   );
 }

@@ -3,7 +3,10 @@ import { ERROR, UNSET_ERROR } from '../actions/types';
 const initialState = {
   register: {},
   login: {},
-  update: {}
+  update: {},
+  updateUser: {},
+  createOrder: {},
+  updateOrder: {}
 };
 
 export default function(state = initialState, action) {

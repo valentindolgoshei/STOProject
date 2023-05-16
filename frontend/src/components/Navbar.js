@@ -10,25 +10,36 @@ class Navbar extends Component {
   onLogout = () => this.props.logoutUser(this.props.history);
 
   render() {
-    let { isAuthenticated, userInfo } = this.props.user;
+    let { isAuthenticated, isAdmin } = this.props.user;
+
+    let adminLinks = (
+      <Link to="/users-list" className="nav-link active">
+        Сотрудники
+      </Link>
+    );
     let authLinks = (
-      <ul className="navbar-nav ml-lg-5">
+      <ul className="navbar-nav">
         <li className="nav-item dropdown cursor-pointer">
-          <div
-            className="nav-link dropdown-toggle active"
+          <Link
+            className="nav-link active"
             id="navbarDropdown"
             role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false">
-            @{userInfo.login}
-          </div>
+            to="/my-profile">
+            Мой профиль
+          </Link>
         </li>
-        <Link to="/users-list" className="nav-link active">
-          All Users
-        </Link>
+        <li className="nav-item">
+          <Link
+            className="nav-link active"
+            id="ordersButton"
+            role="button"
+            to="/orders">
+            Заказы
+          </Link>
+        </li>
+        {isAdmin ? adminLinks : ''}
         <Link to="/" className="nav-link active" onClick={this.onLogout}>
-          Logout
+          Выйти
         </Link>
       </ul>
     );
@@ -37,12 +48,12 @@ class Navbar extends Component {
       <ul className="navbar-nav mr-lg-4">
         <li className="nav-item">
           <Link className="nav-link active" to="/register">
-            Register
+            Регистрация
           </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link active" to="/login">
-            Log In
+            Вход
           </Link>
         </li>
       </ul>
@@ -50,19 +61,9 @@ class Navbar extends Component {
 
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand col-sm-10 mb-3" to="/">
+        <Link className="navbar-brand col-sm-8 mb-3" to="/">
           <img src={logo} alt="STO" className="col-sm-4 mb-2" />
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
 
         <div
           className="collapse navbar-collapse d-flex justify-content-end"
@@ -75,8 +76,7 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  cart: state.cart
+  user: state.user
 });
 
 const mapDispatchToProps = {

@@ -1,15 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Order } from './order.entity';
 
 @Entity()
 export class User {
-
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'nvarchar',
-  charset: 'cp1251',
-  nullable: true,
-  })
+  @Column({ type: 'nvarchar', charset: 'cp1251', nullable: true })
   login: string;
 
   @Column({
@@ -22,4 +19,50 @@ export class User {
     nullable: true,
   })
   password: string;
+
+  @Column()
+  name: string;
+
+  @Column({
+    type: 'timestamp',
+  })
+  birthDate: Date;
+
+  @Column({
+    type: 'int',
+  })
+  rank: number;
+
+  @Column({
+    type: 'nvarchar',
+  })
+  specialization: string;
+
+  @Column({
+    type: 'int',
+  })
+  yearsOfExperience: number;
+
+  @Column({
+    type: 'float',
+  })
+  salary: number;
+
+  @Column({
+    type: 'nvarchar',
+  })
+  education: string;
+
+  @Column({
+    type: 'nvarchar',
+  })
+  phoneNumber: string;
+
+  @Column({
+    type: 'boolean',
+  })
+  isAdmin: number;
+
+  @OneToMany(() => Order, order => order.user)
+  orders: Order[];
 }
