@@ -7,12 +7,15 @@ import { AuthService } from '../auth/auth.service';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User]), JwtModule.register({
-    secretOrPrivateKey: process.env.JWT_SECRET_KEY,
-    signOptions: {
-      expiresIn: 3600,
-    },
-  })],
+  imports: [
+    TypeOrmModule.forFeature([User]),
+    JwtModule.register({
+      secretOrPrivateKey: process.env.JWT_SECRET_KEY,
+      signOptions: {
+        expiresIn: 3600,
+      },
+    }),
+  ],
   controllers: [UsersController],
   providers: [UsersService, AuthService],
 })
