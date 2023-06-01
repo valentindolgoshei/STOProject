@@ -40,14 +40,42 @@ export class UsersController {
     });
   }
 
-  @Put("/:userId")
-  async updateUser(@Param() params: UserParams, @Body() updateUserDto: CreateUserDto) {
-    const updatedUser = await this.usersService.updateUser(params.userId, updateUserDto);
+  @Put('/:userId')
+  async updateUser(
+    @Param() params: UserParams,
+    @Body() updateUserDto: CreateUserDto,
+  ) {
+    const updatedUser = await this.usersService.updateUser(
+      params.userId,
+      updateUserDto,
+    );
     const payload = {
       id: updatedUser.id,
     };
 
     const token = await this.authService.signPayload(payload);
     return { updatedUser, token };
+  }
+
+  @Put('/:userId/activate')
+  async activateUser(@Param() params: UserParams) {
+    const user = await this.usersService.findUserById(params.userId);
+    const updatedUser = await this.usersService.updateUser(params.userId, {
+      ...user,
+      isActive: 1,
+    });
+
+    return { user: updatedUser };
+  }
+
+  @Put('/:userId/deactivate')
+  async deactivateUser(@Param() params: UserParams) {
+    const user = await this.usersService.findUserById(params.userId);
+    const updatedUser = await this.usersService.updateUser(params.userId, {
+      ...user,
+      isActive: 0,
+    });
+
+    return { user: updatedUser };
   }
 }

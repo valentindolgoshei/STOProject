@@ -57,4 +57,8 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsNumber()
   isAdmin: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  isActive: number;
 }

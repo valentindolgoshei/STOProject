@@ -63,6 +63,11 @@ export class User {
   })
   isAdmin: number;
 
+  @Column({
+    type: 'boolean',
+  })
+  isActive: number;
+
   @OneToMany(() => Order, order => order.user)
   orders: Order[];
 }
