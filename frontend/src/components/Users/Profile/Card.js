@@ -27,12 +27,23 @@ export default function Card(props) {
           <li className="list-group-item">
             Номер телефона: {user.phoneNumber}
           </li>
+          <li className="list-group-item">
+            Статус: {user.isActive ? 'Активен' : 'Не активен'}
+          </li>
         </ul>
       </div>
+      <button
+        type="button"
+        className="btn btn-outline-primary mt-3 text-center mb-3"
+        onClick={user.isActive ? props.handleDeactivate : props.handleActivate}>
+        {user.isActive ? 'Дективировать' : 'Активировать'}
+      </button>
     </div>
   );
 }
 
 Card.propTypes = {
+  handleActivate: PropTypes.func,
+  handleDeactivate: PropTypes.func,
   user: PropTypes.any
 };

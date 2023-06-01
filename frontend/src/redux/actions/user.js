@@ -18,7 +18,7 @@ export const login = (history, userData) => {
         history.push('/');
       })
       .catch(err => {
-        const error = err.response.data.error;
+        const error = err.response.data;
         dispatch({
           type: ERROR,
           payload: { login: error }
@@ -31,13 +31,8 @@ export const register = (history, userData) => {
   const sentUserData = mapUserDataToSentUserData(userData);
   return dispatch => {
     return request('POST', 'api/users/register', sentUserData)
-      .then(response => {
-        const user = response.user;
-        const token = response.token;
-
-        setToken(token);
-        dispatch(setCurrentUser(user));
-        history.push('/');
+      .then(() => {
+        history.push('/login');
       })
       .catch(err => {
         const errorsMessage = err.response.data.message;
@@ -137,6 +132,38 @@ export const getViewedUser = id => {
   };
 };
 
+export const activateUser = id => {
+  return dispatch => {
+    return request('PUT', `api/users/${id}/activate`)
+      .then(response => {
+        const user = response.user;
+        dispatch(setViewedUser(user));
+      })
+      .catch(err => {
+        dispatch({
+          type: ERROR,
+          payload: err
+        });
+      });
+  };
+};
+
+export const deactivateUser = id => {
+  return dispatch => {
+    return request('PUT', `api/users/${id}/deactivate`)
+      .then(response => {
+        const user = response.user;
+        dispatch(setViewedUser(user));
+      })
+      .catch(err => {
+        dispatch({
+          type: ERROR,
+          payload: err
+        });
+      });
+  };
+};
+
 export const setCurrentUser = decodedUser => {
   return {
     type: SET_CURRENT_USER,
@@ -170,7 +197,6 @@ function mapUserDataToSentUserData(userData) {
     birthDate: new Date(userData.birthDate),
     rank: Number(userData.rank),
     yearsOfExperience: Number(userData.yearsOfExperience),
-    salary: Number(userData.salary),
-    isAdmin: userData.isAdmin === 'true' || userData.isAdmin === true ? 1 : 0
+    salary: Number(userData.salary)
   };
 }
