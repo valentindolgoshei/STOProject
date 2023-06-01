@@ -21,8 +21,7 @@ class Register extends React.Component {
         yearsOfExperience: undefined,
         salary: undefined,
         education: '',
-        phoneNumber: '',
-        isAdmin: false
+        phoneNumber: ''
       }
     };
     this.handleSubmit = this.handleSubmit.bind(this);

@@ -202,7 +202,6 @@ function mapUserDataToSentUserData(userData) {
     birthDate: new Date(userData.birthDate),
     rank: Number(userData.rank),
     yearsOfExperience: Number(userData.yearsOfExperience),
-    salary: Number(userData.salary),
-    isAdmin: userData.isAdmin === 'true' || userData.isAdmin === true ? 1 : 0
+    salary: Number(userData.salary)
   };
 }

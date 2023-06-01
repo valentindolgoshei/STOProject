@@ -54,12 +54,4 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
   phoneNumber: string;
-
-  @IsNotEmpty()
-  @IsNumber()
-  isAdmin: number;
-
-  @IsNumber()
-  @IsOptional()
-  isActive: number;
 }

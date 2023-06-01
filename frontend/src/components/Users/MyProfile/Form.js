@@ -138,20 +138,6 @@ export default function Form(props) {
         )}
       </div>
       <div className="form-group">
-        <label htmlFor="admin">Админ</label>
-        <select
-          className="form-control"
-          defaultValue={user.isAdmin}
-          id="isAdmin"
-          required>
-          <option value="true">Да</option>
-          <option value="false">Нет</option>
-        </select>
-        {props.errors.isAdmin && (
-          <span className="text-danger">{props.errors.isAdmin}</span>
-        )}
-      </div>
-      <div className="form-group">
         <label htmlFor="name">Логин</label>
         <input
           defaultValue={user.login}

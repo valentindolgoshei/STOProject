@@ -60,6 +60,7 @@ export class User {
 
   @Column({
     type: 'boolean',
+    default: 0,
   })
   isAdmin: number;
 
