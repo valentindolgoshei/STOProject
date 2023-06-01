@@ -137,6 +137,40 @@ export const getViewedUser = id => {
   };
 };
 
+export const activateUser = id => {
+  alert(`Activating user ${id}`);
+  return dispatch => {
+    return request('PUT', `api/users/${id}/activate`)
+      .then(response => {
+        const user = response.user;
+        dispatch(setViewedUser(user));
+      })
+      .catch(err => {
+        dispatch({
+          type: ERROR,
+          payload: err
+        });
+      });
+  };
+};
+
+export const deactivateUser = id => {
+  alert(`Deactivating user ${id}`);
+  return dispatch => {
+    return request('PUT', `api/users/${id}/deactivate`)
+      .then(response => {
+        const user = response.user;
+        dispatch(setViewedUser(user));
+      })
+      .catch(err => {
+        dispatch({
+          type: ERROR,
+          payload: err
+        });
+      });
+  };
+};
+
 export const setCurrentUser = decodedUser => {
   return {
     type: SET_CURRENT_USER,
