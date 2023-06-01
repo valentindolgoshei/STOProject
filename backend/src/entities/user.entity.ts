@@ -65,6 +65,7 @@ export class User {
 
   @Column({
     type: 'boolean',
+    default: 0,
   })
   isActive: number;
 

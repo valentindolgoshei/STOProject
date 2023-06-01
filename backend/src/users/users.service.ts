@@ -52,7 +52,7 @@ export class UsersService {
     });
   }
 
-  async updateUser(id: number, userDto: CreateUserDto): Promise<User> {
+  async updateUser(id: number, userDto: Partial<CreateUserDto>): Promise<User> {
     await this.usersRepository.update({ id }, userDto);
     return this.usersRepository.findOne(id);
   }

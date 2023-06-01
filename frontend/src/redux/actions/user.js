@@ -18,7 +18,7 @@ export const login = (history, userData) => {
         history.push('/');
       })
       .catch(err => {
-        const error = err.response.data.error;
+        const error = err.response.data;
         dispatch({
           type: ERROR,
           payload: { login: error }
@@ -138,7 +138,6 @@ export const getViewedUser = id => {
 };
 
 export const activateUser = id => {
-  alert(`Activating user ${id}`);
   return dispatch => {
     return request('PUT', `api/users/${id}/activate`)
       .then(response => {
@@ -155,7 +154,6 @@ export const activateUser = id => {
 };
 
 export const deactivateUser = id => {
-  alert(`Deactivating user ${id}`);
   return dispatch => {
     return request('PUT', `api/users/${id}/deactivate`)
       .then(response => {

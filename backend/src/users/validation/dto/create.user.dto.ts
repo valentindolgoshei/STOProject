@@ -6,6 +6,7 @@ import {
   IsEmail,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
 } from 'class-validator';
 
@@ -58,7 +59,7 @@ export class CreateUserDto {
   @IsNumber()
   isAdmin: number;
 
-  @IsNotEmpty()
   @IsNumber()
+  @IsOptional()
   isActive: number;
 }

@@ -5,6 +5,7 @@ import {
   Post,
   Body,
   BadRequestException,
+  ForbiddenException,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthorizeUserDto } from '../users/validation/dto/authorize.user.dto';
@@ -26,6 +27,9 @@ export class AuthController {
     const user = await this.usersService.findUserByLogin(
       authorizeUserDto.login,
     );
+    if (!user.isActive) {
+      throw new ForbiddenException('Пользователь не активирован');
+    }
     const verificationResult = verify(authorizeUserDto.password, user.password);
     if (!verificationResult) {
       throw new BadRequestException();
