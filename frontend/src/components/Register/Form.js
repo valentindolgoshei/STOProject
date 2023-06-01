@@ -6,14 +6,14 @@ export default function Form(props) {
     <form
       className="mt-5 mb-5 offset-sm-2 offset-md-3 offset-lg-4 col-sm-8 col-md-6 col-lg-4 border"
       onChange={props.handleChange}>
-      <h3 className="text-center mt-3 mb-3">Registration</h3>
+      <h3 className="text-center mt-3 mb-3">Регистрация</h3>
       <div className="form-group">
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">ФИО</label>
         <input
           type="text"
           className="form-control"
           id="name"
-          placeholder="Name"
+          placeholder="ФИО"
           title="name"
           aria-describedby="nameHelp"
           required
@@ -23,12 +23,12 @@ export default function Form(props) {
         )}
       </div>
       <div className="form-group">
-        <label htmlFor="birthDate">Birth date</label>
+        <label htmlFor="birthDate">Дата рождения</label>
         <input
           type="date"
           className="form-control"
           id="birthDate"
-          placeholder="Birth date"
+          placeholder="Дата рождения"
           title="Birth date"
           aria-describedby="nameHelp"
           required
@@ -38,12 +38,12 @@ export default function Form(props) {
         )}
       </div>
       <div className="form-group">
-        <label htmlFor="rank">Rank</label>
+        <label htmlFor="rank">Разряд</label>
         <input
           type="number"
           className="form-control"
           id="rank"
-          placeholder="Rank"
+          placeholder="Разряд"
           title="Rank"
           aria-describedby="nameHelp"
           required
@@ -53,12 +53,12 @@ export default function Form(props) {
         )}
       </div>
       <div className="form-group">
-        <label htmlFor="specialization">Specialization</label>
+        <label htmlFor="specialization">Специализация</label>
         <input
           type="text"
           className="form-control"
           id="specialization"
-          placeholder="Specialization"
+          placeholder="Специализация"
           title="Specialization"
           aria-describedby="nameHelp"
           required
@@ -68,12 +68,12 @@ export default function Form(props) {
         )}
       </div>
       <div className="form-group">
-        <label htmlFor="yearsOfExperience">Years of Experience</label>
+        <label htmlFor="yearsOfExperience">Стаж, лет</label>
         <input
           type="number"
           className="form-control"
           id="yearsOfExperience"
-          placeholder="Years of Experience"
+          placeholder="Стаж, лет"
           title="Years of Experience"
           aria-describedby="nameHelp"
           required
@@ -83,12 +83,12 @@ export default function Form(props) {
         )}
       </div>
       <div className="form-group">
-        <label htmlFor="salary">Salary</label>
+        <label htmlFor="salary">Заработная плата</label>
         <input
           type="number"
           className="form-control"
           id="salary"
-          placeholder="Salary"
+          placeholder="Заработная плата, BYN"
           title="Salary"
           aria-describedby="nameHelp"
           required
@@ -98,12 +98,12 @@ export default function Form(props) {
         )}
       </div>
       <div className="form-group">
-        <label htmlFor="education">Education</label>
+        <label htmlFor="education">Образование</label>
         <input
           type="text"
           className="form-control"
           id="education"
-          placeholder="Education"
+          placeholder="Образование"
           title="Education"
           aria-describedby="nameHelp"
           required
@@ -113,12 +113,12 @@ export default function Form(props) {
         )}
       </div>
       <div className="form-group">
-        <label htmlFor="phoneNumber">Phone Number</label>
+        <label htmlFor="phoneNumber">Номер телефона</label>
         <input
           type="text"
           className="form-control"
           id="phoneNumber"
-          placeholder="Phone Number"
+          placeholder="Номер телефона"
           title="Phone Number"
           aria-describedby="nameHelp"
           required
@@ -128,13 +128,13 @@ export default function Form(props) {
         )}
       </div>
       <div className="form-group">
-        <label htmlFor="name">Login</label>
+        <label htmlFor="name">Логин</label>
         <input
           type="text"
           className="form-control"
           id="login"
-          placeholder="Login"
-          title="Give yourself a fancy login!"
+          placeholder="Логин"
+          title="Придумайте себе веселый логин!"
           aria-describedby="nameHelp"
           required
         />
@@ -149,38 +149,38 @@ export default function Form(props) {
           className="form-control"
           id="email"
           placeholder="Email"
-          title="Please provide a valid email"
+          title="Пожалуйста, введите существующий адрес"
           aria-describedby="emailHelp"
         />
         {props.errors.email && (
           <span className="text-danger">{props.errors.email}</span>
         )}
         <span id="emailHelp" className="form-text text-muted">
-          Provide a valid email
+          Пожалуйста, введите существующий адрес
         </span>
       </div>
       <div className="form-group">
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Пароль</label>
         <input
           type="password"
           className="form-control"
           id="password"
-          placeholder="Password"
+          placeholder="Пароль"
           aria-describedby="passwordHelp"
-          title="Think of some difficult password"
+          title="Придумайте сложный пароль"
         />
         {props.errors.password && (
           <span className="text-danger">{props.errors.password}</span>
         )}
         <span id="passwordHelp" className="form-text text-muted">
-          Think of some hard-to-guess password!
+          Придумайте сложный пароль
         </span>
       </div>
       <button
         type="button"
         className="btn btn-outline-primary col-sm-12 mb-3"
         onClick={props.handleSubmit}>
-        Submit
+        Зарегистрироваться
       </button>
     </form>
   );

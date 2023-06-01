@@ -9,7 +9,7 @@ export default function Form(props) {
       className="mt-5 mb-5 offset-sm-2 offset-md-3 offset-lg-4 col-sm-8 col-md-6 col-lg-4 border"
       onChange={props.handleChange}
       onSubmit={props.handleSubmit}>
-      <h3 className="text-center mt-3 mb-3">Регистрация</h3>
+      <h3 className="text-center mt-3 mb-3">Вход</h3>
       <div className="form-group">
         <label htmlFor="login">Логин:</label>
         <input

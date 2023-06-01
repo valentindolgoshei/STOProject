@@ -31,13 +31,8 @@ export const register = (history, userData) => {
   const sentUserData = mapUserDataToSentUserData(userData);
   return dispatch => {
     return request('POST', 'api/users/register', sentUserData)
-      .then(response => {
-        const user = response.user;
-        const token = response.token;
-
-        setToken(token);
-        dispatch(setCurrentUser(user));
-        history.push('/');
+      .then(() => {
+        history.push('/login');
       })
       .catch(err => {
         const errorsMessage = err.response.data.message;

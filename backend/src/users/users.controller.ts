@@ -13,13 +13,7 @@ export class UsersController {
 
   @Post('/register')
   async register(@Body() createUserDto: CreateUserDto) {
-    const user = await this.usersService.register(createUserDto);
-    const payload = {
-      id: user.id,
-    };
-
-    const token = await this.authService.signPayload(payload);
-    return { user, token };
+    this.usersService.register(createUserDto);
   }
 
   @Get('/all')
