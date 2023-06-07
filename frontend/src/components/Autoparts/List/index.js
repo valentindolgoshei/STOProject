@@ -29,9 +29,10 @@ class AutopartsList extends React.Component {
 
   refreshAutoparts() {
     this.props.getAutoparts().then(() => {
+      console.log(this.props);
       this.setState({
         ...this.state,
-        autoparts: this.props.autopart.autopartList
+        autoparts: this.props.autopart.autopartsList
       });
     });
   }
@@ -41,12 +42,8 @@ class AutopartsList extends React.Component {
       _.isUndefined(this.state.autoparts) ||
       _.isUndefined(this.state.isAdmin)
     ) {
-      console.log(this.state.autoparts);
-      console.log(this.state.isAdmin);
-      console.log('not rendering');
       return null;
     }
-    console.log('rendering');
     return (
       <AutopartsTable
         isAdmin={this.state.isAdmin}
@@ -82,5 +79,6 @@ AutopartsList.propTypes = {
   getAutoparts: PropTypes.func,
   deleteAutopart: PropTypes.func,
   me: PropTypes.func,
-  user: PropTypes.object
+  user: PropTypes.object,
+  isAdmin: PropTypes.bool
 };

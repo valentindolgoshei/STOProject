@@ -6,7 +6,9 @@ const initialState = {
   update: {},
   updateUser: {},
   createOrder: {},
-  updateOrder: {}
+  updateOrder: {},
+  createAutopart: {},
+  updateAutopart: {}
 };
 
 export default function(state = initialState, action) {
