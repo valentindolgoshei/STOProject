@@ -33,6 +33,15 @@ class Navbar extends Component {
             className="nav-link active"
             id="ordersButton"
             role="button"
+            to="/autoparts">
+            Склад
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            className="nav-link active"
+            id="ordersButton"
+            role="button"
             to="/orders">
             Заказы
           </Link>
