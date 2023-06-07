@@ -17,15 +17,27 @@ import { AutopartsController } from './autoparts/autoparts.controller';
 import { AutopartsService } from './autoparts/autoparts.service';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), UsersModule, AuthModule, OrdersModule, AutopartsModule],
+  imports: [
+    TypeOrmModule.forRoot(),
+    UsersModule,
+    AuthModule,
+    OrdersModule,
+    AutopartsModule,
+  ],
   controllers: [
     AppController,
     HealthcheckController,
     AuthController,
     UsersController,
     OrdersController,
-    AutopartsController
+    AutopartsController,
   ],
-  providers: [AppService, AuthService, UsersService, OrdersService, AutopartsService],
+  providers: [
+    AppService,
+    AuthService,
+    UsersService,
+    OrdersService,
+    AutopartsService,
+  ],
 })
 export class AppModule {}
