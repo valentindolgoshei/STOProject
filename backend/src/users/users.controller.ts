@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CreateUserDto } from './validation/dto/create.user.dto';
 import { UsersService } from './users.service';
 import { AuthService } from '../auth/auth.service';
 import { UserParams } from './validation/params/user.params';
+import { User } from 'src/entities/user.entity';
 
 @Controller('/api/users')
 export class UsersController {
@@ -13,7 +14,36 @@ export class UsersController {
 
   @Post('/register')
   async register(@Body() createUserDto: CreateUserDto) {
-    this.usersService.register(createUserDto);
+    let user: User = await this.usersService.findUser({
+      login: createUserDto.login,
+    });
+
+    if (user) {
+      throw new BadRequestException([
+        {
+          property: 'login',
+          constraints: {
+            isUnique: 'Such login has already been taken',
+          },
+        },
+      ]);
+    }
+
+    user = await this.usersService.findUser({
+      email: createUserDto.email,
+    });
+
+    if (user) {
+      throw new BadRequestException([
+        {
+          property: 'email',
+          constraints: {
+            isUnique: 'User with such email has already been registered',
+          },
+        },
+      ]);
+    }
+    return this.usersService.register(createUserDto);
   }
 
   @Get('/all')
