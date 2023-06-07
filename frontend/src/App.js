@@ -101,13 +101,13 @@ class App extends Component {
             <PrivateRoute
               isPermissions={isAuthenticated && isAdmin}
               exact
-              path="/autoparts/create-autopart"
+              path="/autoparts/new-autopart"
               component={CreateAutopart}
             />
             <PrivateRoute
-              isPermissions={isAuthenticated && isAdmin}
+              isPermissions={isAuthenticated}
               exact
-              path="/autoparts/:autopartId"
+              path="/autoparts/update-autopart/:autopartId"
               component={UpdateAutopart}
             />
           </Layout>

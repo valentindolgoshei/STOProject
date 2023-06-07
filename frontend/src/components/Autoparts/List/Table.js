@@ -15,7 +15,7 @@ export default function AutopartsTable(props) {
     };
 
     row['Просмотр/изменение'] = (
-      <Link to={`/autoparts/${autopart.id}`}>
+      <Link to={`/autoparts/update-autopart/${autopart.id}`}>
         <button type="button" className="btn btn-outline-primary">
           Просмотр/изменение
         </button>
@@ -88,7 +88,7 @@ export default function AutopartsTable(props) {
     <div className="offset-sm-1 col-sm-10 my-5">
       <h3 className="text-center mt-5">Запчасти</h3>
       {props.isAdmin && (
-        <Link to="/autoparts/create-autopart">
+        <Link to="/autoparts/new-autopart">
           <button
             type="button"
             className="btn btn-outline-primary offset-md-9 col-md-3 my-1">
