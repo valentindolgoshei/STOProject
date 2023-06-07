@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsNumberString } from 'class-validator';
 
-export class GetOrderParams {
+export class GetAutopartParams {
   @IsNotEmpty()
   @IsNumberString()
-  orderId: number;
+  autopartId: string;
 }

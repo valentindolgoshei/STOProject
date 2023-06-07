@@ -11,3 +11,6 @@ export const SET_VIEWED_USER = 'SET_VIEWED_USER';
 
 export const SET_ORDERS = 'SET_ORDERS';
 export const SET_ORDER = 'SET_ORDER';
+
+export const SET_AUTOPARTS = 'SET_AUTOPARTS';
+export const SET_AUTOPART = 'SET_AUTOPART';
