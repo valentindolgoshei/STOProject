@@ -2,9 +2,9 @@
   "type": "mysql",
   "host": "localhost",
   "port": 3306,
-  "username": "sto",
-  "password": "sto123",
-  "database": "sto",
+  "username": "valik",
+  "password": "Valik228",
+  "database": "stoproject",
   "entities": ["src/entities/*.entity.ts"],
   "synchronize": true
 }
