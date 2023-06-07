@@ -12,16 +12,20 @@ import { AuthModule } from './auth/auth.module';
 import { OrdersModule } from './orders/orders.module';
 import { OrdersController } from './orders/orders.controller';
 import { OrdersService } from './orders/orders.service';
+import { AutopartsModule } from './autoparts/autoparts.module';
+import { AutopartsController } from './autoparts/autoparts.controller';
+import { AutopartsService } from './autoparts/autoparts.service';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), UsersModule, AuthModule, OrdersModule],
+  imports: [TypeOrmModule.forRoot(), UsersModule, AuthModule, OrdersModule, AutopartsModule],
   controllers: [
     AppController,
     HealthcheckController,
     AuthController,
     UsersController,
     OrdersController,
+    AutopartsController
   ],
-  providers: [AppService, AuthService, UsersService, OrdersService],
+  providers: [AppService, AuthService, UsersService, OrdersService, AutopartsService],
 })
 export class AppModule {}
