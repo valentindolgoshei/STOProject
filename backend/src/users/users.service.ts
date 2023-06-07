@@ -14,37 +14,7 @@ export class UsersService {
   ) {}
 
   async register(userDto: CreateUserDto): Promise<User> {
-    let user: User = await this.usersRepository.findOne({
-      login: userDto.login,
-    });
-
-    if (user) {
-      throw new BadRequestException([
-        {
-          property: 'login',
-          constraints: {
-            isUnique: 'Such login has already been taken',
-          },
-        },
-      ]);
-    }
-
-    user = await this.usersRepository.findOne({
-      email: userDto.email,
-    });
-
-    if (user) {
-      throw new BadRequestException([
-        {
-          property: 'email',
-          constraints: {
-            isUnique: 'User with such email has already been registered',
-          },
-        },
-      ]);
-    }
-
-    return await this.usersRepository.save({
+    return this.usersRepository.save({
       ...userDto,
       password: generate(userDto.password, {
         algorithm: 'sha256',
@@ -71,6 +41,10 @@ export class UsersService {
 
         throw new Error(reason);
       });
+  }
+
+  async findUser(userDto: Partial<User>): Promise<User> {
+    return this.usersRepository.findOne(userDto);
   }
 
   async findUserById(id: number): Promise<User> {
