@@ -23,6 +23,7 @@ import CreateOrder from './components/Orders/New';
 import UpdateOrder from './components/Orders/Update';
 import AutopartsList from './components/Autoparts/List';
 import CreateAutopart from './components/Autoparts/New';
+import UpdateAutopart from './components/Autoparts/Update';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -98,10 +99,16 @@ class App extends Component {
               component={AutopartsList}
             />
             <PrivateRoute
-              isPermissions={isAuthenticated}
+              isPermissions={isAuthenticated && isAdmin}
               exact
               path="/autoparts/create-autopart"
               component={CreateAutopart}
+            />
+            <PrivateRoute
+              isPermissions={isAuthenticated && isAdmin}
+              exact
+              path="/autoparts/:autopartId"
+              component={UpdateAutopart}
             />
           </Layout>
         </Router>

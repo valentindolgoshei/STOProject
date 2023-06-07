@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { MDBDataTable } from 'mdbreact';
-import moment from 'moment';
+import { dateToYear } from '../../common/dateToYear';
 
 export default function AutopartsTable(props) {
   const rows = props.autoparts.map(autopart => {
@@ -15,9 +15,11 @@ export default function AutopartsTable(props) {
     };
 
     row['Просмотр/изменение'] = (
-      <button type="button" className="btn btn-outline-primary">
-        Просмотр/изменение
-      </button>
+      <Link to={`/autoparts/${autopart.id}`}>
+        <button type="button" className="btn btn-outline-primary">
+          Просмотр/изменение
+        </button>
+      </Link>
     );
 
     row['Удаление'] = (
@@ -118,7 +120,3 @@ AutopartsTable.propTypes = {
   isAdmin: PropTypes.bool,
   handleDeleteAutopart: PropTypes.func
 };
-
-function dateToYear(date) {
-  return moment(new Date(date)).format('YYYY');
-}
