@@ -19,6 +19,7 @@ export default function Form(props) {
           placeholder="Артикул"
           title="Артикул"
           aria-describedby="nameHelp"
+          readOnly
           required
         />
         {props.errors.article && (
@@ -35,6 +36,7 @@ export default function Form(props) {
           placeholder="Наименование"
           title="Наименование"
           aria-describedby="nameHelp"
+          readOnly
           required
         />
         {props.errors.name && (
@@ -51,6 +53,7 @@ export default function Form(props) {
           placeholder="Год выпуска"
           title="Год выпуска"
           aria-describedby="nameHelp"
+          readOnly
           required
         />
         {props.errors.yearOfProduction && (
@@ -67,6 +70,7 @@ export default function Form(props) {
           placeholder="Автомобиль"
           title="Автомобиль"
           aria-describedby="nameHelp"
+          readOnly
           required
         />
         {props.errors.vehicle && (
